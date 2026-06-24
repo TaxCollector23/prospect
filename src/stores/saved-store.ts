@@ -48,8 +48,9 @@ export const useSavedStore = create<SavedState>()(
         });
 
         if (!isFirebaseConfigured || !db || !uid) return;
+        const database = db;
         try {
-          const col = collection(db, "saved_opportunities");
+          const col = collection(database, "saved_opportunities");
           if (saved) {
             const q = query(
               col,
@@ -57,7 +58,11 @@ export const useSavedStore = create<SavedState>()(
               where("opportunityId", "==", id),
             );
             const snap = await getDocs(q);
-            await Promise.all(snap.docs.map((d) => deleteDoc(doc(db, "saved_opportunities", d.id))));
+            await Promise.all(
+              snap.docs.map((d) =>
+                deleteDoc(doc(database, "saved_opportunities", d.id)),
+              ),
+            );
           } else {
             await addDoc(col, {
               userId: uid,

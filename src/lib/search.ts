@@ -153,7 +153,7 @@ export async function searchAlgolia(queryText: string): Promise<string[] | null>
     });
     const first = results[0];
     if (first && "hits" in first) {
-      return first.hits.map((h) => h.objectID);
+      return (first.hits as { objectID: string }[]).map((h) => h.objectID);
     }
     return [];
   } catch (err) {
