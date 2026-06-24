@@ -29,6 +29,7 @@ import { SaveButton } from "@/components/opportunity/save-button";
 import { DiscordCard } from "@/components/opportunity/discord-card";
 import { OpportunityCard } from "@/components/opportunity/opportunity-card";
 import { EmptyState } from "@/components/empty-state";
+import { OpportunityStructuredData } from "@/components/structured-data";
 import { useAuth } from "@/components/auth/auth-provider";
 import { useOpportunities } from "@/hooks/use-opportunities";
 import { logActivity, getLocalActivity } from "@/lib/data/activity";
@@ -123,6 +124,7 @@ export default function OpportunityPage() {
 
   return (
     <div className="container-page py-8">
+      <OpportunityStructuredData o={o} />
       <button
         onClick={() => router.back()}
         className="mb-6 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
