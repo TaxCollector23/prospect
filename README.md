@@ -15,6 +15,12 @@ competitions, hackathons, accelerators, and more — matched to their goals.
 ![Tailwind](https://img.shields.io/badge/Tailwind-v4-38BDF8)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
+**🔭 Live demo: [prospect-eight-beta.vercel.app](https://prospect-eight-beta.vercel.app)**
+
+> The deployment runs in **demo mode** with rich seed data, so the full product
+> is explorable without any backend setup. Add Firebase/Algolia/PostHog/Resend
+> keys in Vercel to go live. (`prospect.vercel.app` was already taken globally.)
+
 </div>
 
 ---

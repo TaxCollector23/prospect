@@ -37,4 +37,4 @@ jobs:
       - name: Build
         run: pnpm build
         env:
-          NEXT_PUBLIC_APP_URL: https://prospect.vercel.app
+          NEXT_PUBLIC_APP_URL: https://prospect-eight-beta.vercel.app
