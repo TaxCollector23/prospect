@@ -20,6 +20,7 @@ import {
 } from "@/lib/data/profile";
 import { createDemoUser } from "@/lib/data/demo-user";
 import { DEFAULT_NOTIFICATIONS } from "@/lib/constants";
+import { deriveLocationFromZip, regionForCountry } from "@/lib/geo";
 import type { UserProfile } from "@/types";
 import type { OnboardingData } from "@/stores/onboarding-store";
 import { EVENTS, identify, resetAnalytics, track } from "@/lib/analytics";
@@ -214,6 +215,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const completeOnboarding = React.useCallback(
     async (data: OnboardingData, account: { name: string; email: string }) => {
+      const derived = deriveLocationFromZip(data.country, data.postalCode);
       const base: UserProfile = {
         ...(profile ??
           createDemoUser({ name: account.name, email: account.email })),
@@ -224,6 +226,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         careerGoals: data.careerGoals,
         country: data.country,
         postalCode: data.postalCode,
+        region: regionForCountry(data.country),
+        ...(derived.state ? { state: derived.state } : {}),
+        ...(derived.city ? { city: derived.city } : {}),
         onboarded: true,
         updatedAt: new Date().toISOString(),
       };
